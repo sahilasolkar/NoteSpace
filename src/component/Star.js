@@ -21,7 +21,7 @@ const Star = (props) => {
           const tasks = props;
           console.log(tasks.id)
 
-          db.collection(currentUser.uid).doc('task')
+          
 
         } else {
           console.log("document not found");
