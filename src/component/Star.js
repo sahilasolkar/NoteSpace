@@ -22,6 +22,7 @@ const Star = (props) => {
           console.log(tasks.id)
 
           //these are my changes
+          console.log('leaging git hub')
 
         } else {
           console.log("document not found");
