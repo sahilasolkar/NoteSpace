@@ -21,7 +21,7 @@ const Star = (props) => {
           const tasks = props;
           console.log(tasks.id)
 
-          
+          //these are my changes
 
         } else {
           console.log("document not found");
