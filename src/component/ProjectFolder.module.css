@@ -1,0 +1,33 @@
+.customshape{
+  background-color: #e5e8f1;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border-right: #706f6f;
+  height: 140px;
+  width: 180px;
+  clip-path: polygon(0 0, 35% 0, 40% 8%, 100% 8%, 100% 100%, 0 100%);
+}
+
+.customshapeinside{
+  /* font-size: 10px; */
+  margin: 4px;
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border-right: #706f6f;
+  height: 132px;
+  width: 172px;
+  clip-path: polygon(0 0, 33% 0, 38% 8%, 100% 8%, 100% 100%, 0 100%);
+  padding: 20px 5px 5px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* clip-path: polygon(3% 3%, 34% 3%, 39% 11%, 97% 11%, 97% 97%, 3% 97%); */
+
+.customshape .customshapeinside p{
+  color: #2f2569;
+  /* margin-top: 24px; */
+  /* padding-left: 14px; */
+}

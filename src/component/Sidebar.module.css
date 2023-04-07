@@ -1,0 +1,159 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+.side-bar-container{
+  height: 94vh;
+  width: 170px;
+  background-color: white;
+  border-right: 1px solid #c4c4c4;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.projects-functions p{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: start;
+}
+
+.support{
+  padding-top: 50px;
+}
+
+.icons{
+  padding-top: 2px;
+  width: 15px;
+  height: 15px;
+  color: #706f6f;
+}
+
+.profile-with-image{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #c4c4c4;
+}
+
+.projects{
+  margin-top: 1rem;
+  border-bottom: 1px solid #c4c4c4;
+}
+
+.projects button{
+  height: 30px;
+  width: 150px;
+  border-radius: 5px;
+  border: none;
+  background-color: #9a53d2;
+  color: white;
+}
+
+.projects-functions{
+  /* background-color: red; */
+  margin-top: 2rem;
+  /* margin-left: 3rem; */
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: start;
+}
+
+.projects-functions p{
+  cursor: pointer;
+  /* background-color: red; */
+  text-align: start;
+  padding: 4px 1rem;
+  width: 85%;
+  border-radius: 5px;
+}
+
+.projects-functions p:hover{
+  background-color: #f5eefb;
+}
+
+.profile-with-image img{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+}
+
+.project-list{
+  /* padding-left: 1rem; */
+  margin-top: 1rem;
+  text-align: start;
+  border-bottom: 1px solid #c4c4c4;
+}
+
+.project-list p{
+  margin-left: 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: start;
+}
+
+.project-list-items{
+  margin-top: 1rem;
+  margin-left: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  justify-content: start;
+}
+
+.project-list-items li{
+  width: 100%;
+  cursor: pointer;
+  /* background-color: red; */
+  text-align: start;
+  padding: 4px 5px;
+  width: 85%;
+  border-radius: 5px;
+  /* list-style-type: none; */
+}
+
+.project-list-items li:hover{
+  background-color: #f5eefb;
+}
+
+.profile-short{
+  text-align: start;
+  overflow: hidden;
+}
+
+.profile-short p{
+  font-size: small;
+  white-space: nowrap; /* prevent the name from wrapping */
+  /* animation: scroll 8s linear infinite;  */
+  /* start the scrolling animation */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0); /* start scrolling from the left */
+  }
+  100% {
+    transform: translateX(-100%); /* scroll all the way to the left */
+  }
+}
+
+.profile-short h1{
+  font-size: medium;
+}
+
+.logout{
+  cursor: pointer;
+}

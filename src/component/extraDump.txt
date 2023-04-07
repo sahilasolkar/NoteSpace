@@ -1,0 +1,29 @@
+// const [formData, setFormData] = useState({});
+
+//   const handlelogin = (loginData) => {
+//     setFormData(loginData);
+//   };
+
+//   rules_version = '2';
+// service cloud.firestore {
+//   match /databases/{database}/documents {
+//     match /{document=**} {
+//       allow read, write: if false;
+//     }
+//   }
+// }
+
+//   const {currentUser} = useAuth()
+//   db.collection(currentUser.uid).doc('userData').set({
+//     name: 'John',
+//     email: 'johndoe@example.com',
+//   });
+
+//   db.collection(currentUser.uid).doc('userData').get().then((doc) => {
+//     if (doc.exists) {
+//       console.log(doc.data());
+//     } else {
+//       console.log('Document not found!');
+//     }
+//   });
+//   console.log(currentUser.uid)

@@ -1,0 +1,15 @@
+.star {
+  fill: gray;
+  transition: fill 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.star-selected {
+  fill: rgb(255, 213, 0);
+}
+
+.starClass{
+  padding-top: 2px;
+  width: 20px;
+  height: 20px;
+}

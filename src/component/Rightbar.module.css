@@ -1,0 +1,104 @@
+.main-container {
+  background-color: #f7f8fc;
+  display: flex;
+  padding-left: 1rem;
+}
+
+.my-task {
+  margin-top: 87px;
+}
+
+.my-task p {
+  height: 57px;
+  display: flex;
+  /* flex-direction: column; */
+  color: #8388a7;
+  font-weight: 400px;
+  gap: 10px;
+  align-items: center;
+}
+
+.task-container {
+  padding: 1rem;
+  width: 270px;
+  height: 180px;
+  border: 2px solid #e5e8f1;
+  border-radius: 10px;
+  /* display: flex; */
+  overflow-y: scroll;
+}
+
+.task-message-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: start;
+  /* justify-content: space-between; */
+}
+
+.task-messages {
+  width: 100%;
+  display: flex;
+  /* background-color: red; */
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* .task-message-container div {
+  display: flex;
+  align-items: center;
+  background-color: aqua;
+  justify-content: start;
+  gap: 1rem;
+} */
+
+.task-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.star {
+  padding-top: 2px;
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+
+.icons {
+  padding-top: 2px;
+  width: 15px;
+  height: 15px;
+  /* color: #706f6f; */
+  /* fill: #ff0000; */
+  /* color: red; */
+}
+
+/* checkbox */
+
+.check {
+  padding-top: 2px;
+  width: 20px;
+  height: 20px;
+}
+
+.check path {
+  stroke: black;
+}
+
+.check rect {
+  fill: white;
+}
+
+.recent-activity-container {
+  /* margin-top: 1rem; */
+  padding: 1rem;
+  width: 270px;
+  height: 140px;
+  border: 2px solid #e5e8f1;
+  border-radius: 10px;
+  /* display: flex; */
+  overflow-y: scroll;
+}

@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  /* overflow: hidden; */
+}
+.container{
+  display: grid;
+  grid-template-columns: 1fr 4fr 2fr;
+  /* overflow: hidden; */
+  /* justify-content: ; */
 }
 
 .App-logo {
