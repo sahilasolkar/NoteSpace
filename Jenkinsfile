@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/FaiyazJambotkar/NoteSpace.git']])
+                checkout scmGit(branches: [[name: '*/dockerized']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/FaiyazJambotkar/NoteSpace.git']])
             }
         }
 
