@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import classes from "./Rightbar.module.css";
 import { ReactComponent as Check } from "../icons/checkmark-circle-outline.svg";
 import { ReactComponent as CheckSquare } from "../icons/checkbox-outline.svg";
@@ -11,18 +11,27 @@ import { db } from "../firebase";
 import Star from "./Star";
 
 const Rightbar = (props) => {
-  const [isStarred, setIsStarred] = useState(false);
+  const [taskData, setTaskData] = useState(null);
   const { currentUser } = useAuth();
 
-  const handleStarClick = (val) => {
-    console.log("handleStarClick", val);
-    setIsStarred(!isStarred);
-    if (isStarred) {
-      db.collection(currentUser.uid).doc("task").get();
-    }
+  // const handleStarClick = (val) => {
+  //   console.log("handleStarClick", val);
+  //   setIsStarred(!isStarred);
+  //   if (isStarred) {
+  //     db.collection(currentUser.uid).doc("task").get();
+  //   }
+  // };
+
+  const onUpdateHandler = (data) => {
+    // setTaskData(data)
+    getAlltasks();
   };
 
-  const [taskData, setTaskData] = useState(null);
+  //to set important
+  // const StarClickHandler = (taskdata) => {
+  //   console.log("clicked");
+  //   // console.log(taskdata)
+  // };
 
   const navigate = useNavigate();
 
@@ -30,17 +39,31 @@ const Rightbar = (props) => {
     navigate("/new-task");
   };
 
-  useEffect(() => {
+  console.log(taskData);
+
+  //removed the callback() here. 
+  const getAlltasks = () => {
     db.collection(currentUser.uid)
       .doc("task")
       .get()
       .then((doc) => {
         if (doc.exists) {
+          // const ordered = Object.keys(doc.data())
+          //   .sort()
+          //   .reduce((obj, key) => {
+          //     obj[key] = doc.data()[key];
+          //     return obj;
+          //   }, {});
           setTaskData(doc.data());
         } else {
           console.log("document not found");
         }
       });
+  };
+
+  //to run the fetch get fn and settaskdata
+  useEffect(() => {
+    getAlltasks();
     // console.log(taskData)
   }, []);
 
@@ -54,17 +77,20 @@ const Rightbar = (props) => {
         <div className={classes["task-container"]}>
           <div className={classes["task-message-container"]}>
             {taskData &&
-              Object.keys(taskData).map((key, index) => (
-                <div key={index} className={classes["task-messages"]}>
+              Object.keys(taskData).map((taskid) => (
+                <div key={taskid} className={classes["task-messages"]}>
                   <CheckSquare className={classes.check} />
                   <div className={classes["task-info"]}>
-                    <h4>{taskData[key].title}</h4>
-                    <div>{taskData[key].description}</div>
+                    <h4>{taskData[taskid].title}</h4>
+                    <div>{taskData[taskid].description}</div>
                   </div>
                   <Star
-                    data={taskData[key]}
-                    id={key}
-                    className={classes.star}
+                    key={`${taskData[taskid].important}`}
+                    updateData={() => onUpdateHandler()}
+                    data={taskData[taskid]}
+                    id={taskid}
+                    // onClick={StarClickHandler}
+                    // className={classes.star}
                   />
                 </div>
               ))}
