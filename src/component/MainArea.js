@@ -13,17 +13,37 @@ const MainArea = (props) => {
   const { currentUser } = useAuth();
   const [noteData, setNoteData] = useState(null);
 
-  useEffect(() => {
+  const onUpdateHandler = () => {
+    getAllNotes();
+  };
+
+  const getAllNotes = () => {
     db.collection(currentUser.uid)
       .doc("notes")
       .get()
       .then((doc) => {
         if (doc.exists) {
+          // console.log(doc.data());
           setNoteData(doc.data());
         } else {
           console.log("document not found");
         }
       });
+  };
+
+  useEffect(() => {
+    // db.collection(currentUser.uid)
+    //   .doc("notes")
+    //   .get()
+    //   .then((doc) => {
+    //     if (doc.exists) {
+    //       console.log(doc.data())
+    //       setNoteData(doc.data());
+    //     } else {
+    //       console.log("document not found");
+    //     }
+    //   });
+    getAllNotes();
   }, []);
 
   const navigate = useNavigate();
@@ -57,12 +77,19 @@ const MainArea = (props) => {
           My Notes <Add onClick={onAddNoteHandler} className={classes.icons} />
         </p>
         <div className={classes["notes-box-container"]}>
-          
-            {noteData &&
-              Object.values(noteData).map((doc, index) => (
-                <NotesBox key={index} note={doc.note} title={doc.title} date={doc.date} />
-              ))}
-          
+          {noteData &&
+            Object.keys(noteData).map((doc) => (
+              <NotesBox
+                updateData={() => onUpdateHandler()}
+                key={doc}
+                note={noteData[doc].note}
+                title={noteData[doc].title}
+                date={noteData[doc].date}
+                data={noteData[doc]}
+                id={doc}
+              />
+            ))}
+
           {/* <NotesBox note='testnote' title='test title' date='randomdate'/>
           <NotesBox note='testnote' title='test title' date='randomdate'/> */}
         </div>

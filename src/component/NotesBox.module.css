@@ -10,6 +10,13 @@
   /* padding-left: 1rem; */
 } 
 
+.icons{
+  padding-top: 2px;
+  width: 20px;
+  height: 20px;
+  color: #706f6f;
+}
+
 .notes-topic{
   /* color: b; */
   padding-left: 1rem;
@@ -19,6 +26,16 @@
 .notes-container p{
   padding-left: 1rem;
   text-align: start;
+}
+.notes-container div p{
+  padding-left: 0;
+  text-align: start;
+}
+
+.notes-container div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .notes-container div{
@@ -30,6 +47,6 @@
 
 .notes-date{
   margin-top: 8px;
-  padding-left: 1rem;
+  /* padding-left: 1rem; */
   align-self: start;
 }

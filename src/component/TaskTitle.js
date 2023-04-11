@@ -11,12 +11,14 @@ const TaskTitle = (props) => {
 
   const taskDeleteHandler = () =>{
 
+    console.log(props.id)
+
     const result = window.confirm('Are you sure you want to delete the task?')
 
     // console.log(tasks.id)
 
     if(result){
-      console.log(tasks)
+      // console.log(tasks)
       db.collection(currentUser.uid).doc('task').get().then((doc)=>{
         if(doc.exists){
           db.collection(currentUser.uid).doc('task').update({

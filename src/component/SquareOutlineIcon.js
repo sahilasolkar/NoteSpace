@@ -26,7 +26,7 @@ const SquareOutlineIcon = (props) => {
         .get()
         .then((doc) => {
           if (doc.exists) {
-            console.log(tasks.id);
+            // console.log(tasks.id);
 
             db.collection(currentUser.uid)
               .doc("task")
@@ -37,7 +37,7 @@ const SquareOutlineIcon = (props) => {
                 },
               })
               .then(() => {
-                console.log("Task deleted successfully");
+                console.log("Task updated successfully");
                 props.updateData();
               })
               .catch((error) => {
