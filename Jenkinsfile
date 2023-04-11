@@ -4,6 +4,7 @@ pipeline {
     tools {
         terraform 'terraform-11'
         nodejs 'nodejs-19.8'
+        docker 'docker-latest'
     }
 
     stages {
