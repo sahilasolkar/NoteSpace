@@ -9,9 +9,11 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase";
 import Star from "./Star";
+import SquareOutlineIcon from "./SquareOutlineIcon";
 
 const Rightbar = (props) => {
   const [taskData, setTaskData] = useState(null);
+  const [DoneTasks, setDoneTasks] = useState(null);
   const { currentUser } = useAuth();
 
   // const handleStarClick = (val) => {
@@ -39,9 +41,9 @@ const Rightbar = (props) => {
     navigate("/new-task");
   };
 
-  console.log(taskData);
+  // console.log(taskData);
 
-  //removed the callback() here. 
+  //removed the callback() here.
   const getAlltasks = () => {
     db.collection(currentUser.uid)
       .doc("task")
@@ -54,7 +56,47 @@ const Rightbar = (props) => {
           //     obj[key] = doc.data()[key];
           //     return obj;
           //   }, {});
-          setTaskData(doc.data());
+
+          //trying to sort the data before setting it,
+
+          //sorting by the title
+          const sortedTaskData = Object.fromEntries(
+            Object.entries(doc.data()).sort(([, a], [, b]) =>
+              a.title.localeCompare(b.title)
+            )
+          );
+
+          //sorting by importantstatus
+          // const sortedTasks = Object.values(doc.data()).sort((a, b) => {
+          //   // Sort by important status first
+          //   if (b.important && !a.important) {
+          //     return 1;
+          //   } else if (a.important && !b.important) {
+          //     return -1;
+          //   }
+          //   // If both have same important status, sort by title
+          //   return a.title.localeCompare(b.title);
+          // });
+
+          console.log(sortedTaskData);
+
+          //tasks that are done
+          const filteredTasksNotDone = Object.fromEntries(
+            Object.entries(sortedTaskData).filter(
+              ([taskId, task]) => !task.done
+            )
+          );
+
+          //tasks that are done
+          const filteredTasksDone = Object.fromEntries(
+            Object.entries(sortedTaskData).filter(([taskId, task]) => task.done)
+          );
+
+          console.log(filteredTasksDone);
+          console.log(filteredTasksNotDone);
+
+          setTaskData(filteredTasksNotDone);
+          setDoneTasks(filteredTasksDone);
         } else {
           console.log("document not found");
         }
@@ -79,7 +121,12 @@ const Rightbar = (props) => {
             {taskData &&
               Object.keys(taskData).map((taskid) => (
                 <div key={taskid} className={classes["task-messages"]}>
-                  <CheckSquare className={classes.check} />
+                  <SquareOutlineIcon
+                    // key={`${taskData[taskid].done}`}
+                    id={taskid}
+                    data={taskData[taskid]}
+                    updateData={() => onUpdateHandler()}
+                  />
                   <div className={classes["task-info"]}>
                     <h4>{taskData[taskid].title}</h4>
                     <div>{taskData[taskid].description}</div>
@@ -99,12 +146,27 @@ const Rightbar = (props) => {
         <div>
           <p>
             <Time className={classes.icons} />
-            Recent Activity
+            Task Archive
           </p>
-          <div className={classes["recent-activity-container"]}></div>
+          <div className={classes["recent-activity-container"]}>
+            {DoneTasks &&
+              Object.keys(DoneTasks).map((taskid) => (
+                <div key={taskid} className={classes["task-messages"]}>
+                  <SquareOutlineIcon
+                    id={taskid}
+                    data={DoneTasks[taskid]}
+                    updateData={() => onUpdateHandler()}
+                  />
+                  <div  className={classes["task-info"]}>
+                    <h4>{DoneTasks[taskid].title}</h4>
+                    {/* <div>{DoneTasks[taskid].task}</div> */}
+                  </div>
+                </div>
+              ))}
+          </div>
         </div>
       </div>
-      <div className={classes["recent-activity"]}></div>
+      {/* <div className={classes["recent-activity"]}></div> */}
     </div>
   );
 };

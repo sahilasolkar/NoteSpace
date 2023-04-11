@@ -11,6 +11,8 @@ const Star = (props) => {
   const { currentUser } = useAuth();
 
   const onClickHandler = async () => {
+
+    //to mark the taasks as important
     await db
       .collection(currentUser.uid)
       .doc("task")
@@ -23,7 +25,7 @@ const Star = (props) => {
           db.collection(currentUser.uid)
             .doc("task")
             .update({
-              [tasks.id]: {
+              [`${tasks.id}`]: {
                 ...tasks.data,
                 important: !tasks.data.important,
               },
@@ -31,7 +33,7 @@ const Star = (props) => {
             .then(() => {
               console.log("task sucessfully updated");
               props.updateData();
-              console.log(tasks);
+              // console.log(tasks);
             })
             .catch((error) => {
               console.error("error updating the task", error);

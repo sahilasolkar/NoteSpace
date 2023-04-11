@@ -1,0 +1,13 @@
+.check {
+  padding-top: 2px;
+  width: 20px;
+  height: 20px;
+}
+
+.check path {
+  stroke: black;
+}
+
+.check rect {
+  fill: white;
+}

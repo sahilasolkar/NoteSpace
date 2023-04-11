@@ -30,7 +30,7 @@ const NewTask = () => {
           [taskid]:{
             title: titleRef.current.value,
             task: taskRef.current.value,
-            status: "pending",
+            done: false,
             important: false,
           }
         }).then(()=>{
@@ -44,7 +44,7 @@ const NewTask = () => {
           [taskid]:{
             title: titleRef.current.value,
             task: taskRef.current.value,
-            status: "pending",
+            done: false,
             important: false, 
           }
         }).then(()=>{
