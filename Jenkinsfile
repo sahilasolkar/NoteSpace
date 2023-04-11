@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     tools {
-        terraform 'terraform-11'
-        nodejs 'nodejs-19.8'
-        docker 'docker-latest'
+    dockerTool 'docker-latest'
+    nodejs 'nodejs-19.8'
+    terraform 'terraform-11'
     }
 
     stages {
