@@ -11,6 +11,7 @@ import ForgotPassword from "./component/ForgotPassword";
 import { useAuth } from "./context/AuthContext";
 import NewNote from "./component/NewNote";
 import NewTask from "./component/NewTask";
+import NewProject from "./component/NewProject";
 
 //dribble-design-link-for-reference-https://dribbble.com/shots/19721906-Note-taking-app-dashboard-design/attachments/14834313?mode=media
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/user-details" Component={UserDetails}/>
             <Route path="/new-note" Component={NewNote}/>
             <Route path="/new-task" Component={NewTask}/>
+            <Route path="/new-project" Component={NewProject}/>
             </Route>
             <Route path="/signup" Component={SignUp} />
             <Route path="/login" Component={Login} />

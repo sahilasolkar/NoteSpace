@@ -12,6 +12,7 @@ import { useAuth } from "../context/AuthContext";
 const MainArea = (props) => {
   const { currentUser } = useAuth();
   const [noteData, setNoteData] = useState(null);
+  const [projectData, setProjectData] = useState(null);
 
   const onUpdateHandler = () => {
     getAllNotes();
@@ -25,25 +26,30 @@ const MainArea = (props) => {
         if (doc.exists) {
           // console.log(doc.data());
           setNoteData(doc.data());
+          // console.log(noteData)
         } else {
           console.log("document not found");
         }
       });
   };
 
+  const getAllProjects = () => {
+    db.collection(currentUser.uid)
+      .doc("project")
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          // console.log(doc.data())
+          setProjectData(doc.data());
+        } else {
+          console.log("projects not found");
+        }
+      });
+  };
+
   useEffect(() => {
-    // db.collection(currentUser.uid)
-    //   .doc("notes")
-    //   .get()
-    //   .then((doc) => {
-    //     if (doc.exists) {
-    //       console.log(doc.data())
-    //       setNoteData(doc.data());
-    //     } else {
-    //       console.log("document not found");
-    //     }
-    //   });
     getAllNotes();
+    getAllProjects();
   }, []);
 
   const navigate = useNavigate();
@@ -52,7 +58,9 @@ const MainArea = (props) => {
     navigate("/new-note");
   };
 
-  const onAddProjectHandler = () => {};
+  const onAddProjectHandler = () => {
+    navigate("/new-project");
+  };
 
   // console.log('running in main area')
   return (
@@ -60,15 +68,18 @@ const MainArea = (props) => {
       <div className={classes.heading}>Welcome back, name!</div>
       <div className={classes.projects}>
         <p className={classes["project-heading"]}>
-          <Folder className={classes.icons} /> My Projects{" "}
+          <Folder className={classes.icons} /> My Projects
           <Add onClick={onAddProjectHandler} className={classes.icons} />
         </p>
 
         <div className={classes["folder-container"]}>
-          <ProjectFolder />
-          <ProjectFolder />
-          <ProjectFolder />
-          <ProjectFolder />
+          
+          {projectData &&
+            Object.keys(projectData).map((doc) => (
+              <ProjectFolder updateData={() => onUpdateHandler()} key={doc} 
+              data = {projectData[doc]}
+              />
+            ))}
         </div>
       </div>
       <div className={classes.notes}>
