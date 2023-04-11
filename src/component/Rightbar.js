@@ -83,7 +83,7 @@ const Rightbar = (props) => {
           //   return a.title.localeCompare(b.title);
           // });
 
-          console.log(sortedTaskData);
+          // console.log(sortedTaskData);
 
           //tasks that are done
           const filteredTasksNotDone = Object.fromEntries(
