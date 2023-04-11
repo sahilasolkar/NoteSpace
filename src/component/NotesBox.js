@@ -10,7 +10,7 @@ const NotesBox = (props) => {
 
   const {currentUser} = useAuth()
 
-  console.log(props.data)
+  // console.log(props.data)
   // console.log(props.id)
   
   const onDeleteHandler = () =>{
