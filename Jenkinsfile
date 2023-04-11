@@ -15,17 +15,16 @@ pipeline {
             }
         }
 
-        // parallel firstBranch: {
 
         stage('container-build') {
             steps {
-                sh 'docker build . -t ~/notespace'
+                sh 'docker build . -t notespace'
             }
         }
 
         stage('container-run') {
             steps {
-                sh 'docker run -p 49160:3000 ~/notespace'
+                sh 'docker run -p 49160:3000 notespace'
             }
         }
 
