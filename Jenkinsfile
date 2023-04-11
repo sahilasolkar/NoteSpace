@@ -18,7 +18,7 @@ pipeline {
 
         stage('container-build') {
             steps {
-                sh 'docker build . -t notespace'
+                sh 'docker start && docker build . -t notespace'
             }
         }
 
