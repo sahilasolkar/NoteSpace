@@ -10,6 +10,7 @@ import { useAuth } from "../context/AuthContext";
 import { db } from "../firebase";
 import Star from "./Star";
 import SquareOutlineIcon from "./SquareOutlineIcon";
+import TaskTitle from "./TaskTitle";
 
 const Rightbar = (props) => {
   const [taskData, setTaskData] = useState(null);
@@ -23,6 +24,10 @@ const Rightbar = (props) => {
   //     db.collection(currentUser.uid).doc("task").get();
   //   }
   // };
+
+  const taskDeleteHandler = (event) =>{
+    event.preventDefault();
+  }
 
   const onUpdateHandler = (data) => {
     // setTaskData(data)
@@ -92,8 +97,8 @@ const Rightbar = (props) => {
             Object.entries(sortedTaskData).filter(([taskId, task]) => task.done)
           );
 
-          console.log(filteredTasksDone);
-          console.log(filteredTasksNotDone);
+          // console.log(filteredTasksDone);
+          // console.log(filteredTasksNotDone);
 
           setTaskData(filteredTasksNotDone);
           setDoneTasks(filteredTasksDone);
@@ -157,10 +162,12 @@ const Rightbar = (props) => {
                     data={DoneTasks[taskid]}
                     updateData={() => onUpdateHandler()}
                   />
-                  <div  className={classes["task-info"]}>
+                  {/* <div onClick={taskDeleteHandler} className={classes["task-info"]}>
                     <h4>{DoneTasks[taskid].title}</h4>
-                    {/* <div>{DoneTasks[taskid].task}</div> */}
-                  </div>
+                  </div> */}
+                  <TaskTitle 
+                  id={taskid} data={DoneTasks[taskid]} donetask={DoneTasks[taskid].title}
+                  updateData={() => onUpdateHandler()} />
                 </div>
               ))}
           </div>
