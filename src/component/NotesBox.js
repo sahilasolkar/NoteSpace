@@ -6,7 +6,7 @@ const NotesBox = (props) => {
   // console.log('running')
   // const { currentUser } = useAuth();
   // const [noteData, setNoteData] = useState(null)
-
+  
   // useEffect(() => {
   //   db.collection(currentUser.uid)
   //     .doc("notes")
