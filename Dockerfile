@@ -15,5 +15,8 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 8081
-CMD [ "node", "server.js" ]
+# Build the React application
+RUN npm run build
+
+EXPOSE 3000
+CMD [ "node", "start" ]
