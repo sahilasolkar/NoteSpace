@@ -19,13 +19,13 @@ pipeline {
 
         stage('container-build') {
             steps {
-                sh 'docker build . -t ~/NoteSpace'
+                sh 'docker build . -t ~/notespace'
             }
         }
 
         stage('container-run') {
             steps {
-                sh 'docker run -p 49160:3000 ~/NoteSpace'
+                sh 'docker run -p 49160:3000 ~/notespace'
             }
         }
 
