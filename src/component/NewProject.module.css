@@ -27,12 +27,33 @@ form input{
   border: none;
 }
 
-.notebody{
+.projectbody{
   margin-top: 2rem;
   width: 100%;
   border: none;
-  max-height: 350px;
+  max-height: 150px;
   overflow-y: auto;
+}
+
+.nameinput{
+  margin-bottom: 1rem;
+}
+
+.dateinput{
+  display: inline-block;
+  margin-top: 1rem;
+  width: 200px;
+}
+
+.priorityinput{
+  display: inline-block;
+  margin-top: 1rem;
+  width: 200px;
+}
+
+.metadata{
+  display: flex;
+  gap: 1rem;
 }
 
 .new-note-button{

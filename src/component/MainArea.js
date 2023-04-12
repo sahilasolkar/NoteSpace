@@ -6,7 +6,7 @@ import { ReactComponent as Doc } from "../icons/document-outline.svg";
 import NotesBox from "./NotesBox";
 import { ReactComponent as Add } from "../icons/add-circle-outline.svg";
 import { db } from "../firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const MainArea = (props) => {
@@ -62,6 +62,10 @@ const MainArea = (props) => {
     navigate("/new-project");
   };
 
+  const onProjectFolderHandler = () => {
+    navigate(`/project`);
+  };
+
   // console.log('running in main area')
   return (
     <div className={classes["main-container"]}>
@@ -73,12 +77,15 @@ const MainArea = (props) => {
         </p>
 
         <div className={classes["folder-container"]}>
-          
           {projectData &&
             Object.keys(projectData).map((doc) => (
-              <ProjectFolder updateData={() => onUpdateHandler()} key={doc} 
-              data = {projectData[doc]}
-              />
+              <Link key={doc} style={{ textDecoration: "none" }} to={`/project/${doc}`}>
+                <ProjectFolder
+                  updateData={() => onUpdateHandler()}
+                  
+                  data={projectData[doc]}
+                />
+              </Link>
             ))}
         </div>
       </div>
