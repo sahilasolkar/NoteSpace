@@ -13,6 +13,7 @@ import NewNote from "./component/NewNote";
 import NewTask from "./component/NewTask";
 import NewProject from "./component/NewProject";
 import Projects from "./component/Projects";
+import NewProjectTask from "./component/NewProjectTask";
 
 //dribble-design-link-for-reference-https://dribbble.com/shots/19721906-Note-taking-app-dashboard-design/attachments/14834313?mode=media
 
@@ -34,6 +35,7 @@ function App() {
               <Route path="/new-task" Component={NewTask} />
               <Route path="/new-project" Component={NewProject} />
               <Route path="/project/:id" Component={Projects} />
+              <Route path="/project/:id/new-project-task/:id" Component={NewProjectTask}/>
             </Route>
             <Route path="/signup" Component={SignUp} />
             <Route path="/login" Component={Login} />

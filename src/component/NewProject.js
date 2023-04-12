@@ -49,9 +49,7 @@ const NewProject = () => {
             inProgress: 0,
             toDo: 0,
             completed: 0,
-            task: {
-              
-            }
+            task: {}
           },
         })
         .then(() => {
@@ -74,9 +72,7 @@ const NewProject = () => {
             inProgress: 0,
             toDo: 0,
             completed: 0,
-            task: {
-              
-            }
+            task: {}
           },
         })
         .then(() => { 

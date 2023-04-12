@@ -21,7 +21,7 @@ const Star = (props) => {
         if (doc.exists) {
           // console.log(doc.data());
           // console.log(props);
-
+          console.log(tasks.id)
           db.collection(currentUser.uid)
             .doc("task")
             .update({
