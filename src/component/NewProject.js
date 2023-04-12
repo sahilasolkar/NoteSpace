@@ -10,6 +10,8 @@ const NewProject = () => {
 
   const titleRef = useRef();
   const descriptionRef = useRef();
+  const dateRef = useRef();
+  const priorityRef = useRef();
 
   const { currentUser } = useAuth();
 
@@ -42,13 +44,21 @@ const NewProject = () => {
             title: titleRef.current.value,
             description: descriptionRef.current.value,
             date: new Date().toLocaleDateString(),
+            priority: priorityRef.current.value,
+            dueDate: dateRef.current.value, 
+            inProgress: 0,
+            toDo: 0,
+            completed: 0,
+            task: {
+              
+            }
           },
         })
         .then(() => {
-          console.log("Document successfully written!");
+          console.log("project successfully created");
         })
         .catch((error) => {
-          console.error("Error writing document: ", error);
+          console.error("Error creating the project", error);
         });
       }
       else{
@@ -59,17 +69,24 @@ const NewProject = () => {
             title: titleRef.current.value,
             description: descriptionRef.current.value,
             date: new Date().toLocaleDateString(),
+            priority: priorityRef.current.value,
+            dueDate: dateRef.current.value, 
+            inProgress: 0,
+            toDo: 0,
+            completed: 0,
+            task: {
+              
+            }
           },
         })
-        .then(() => {
-          console.log("Document successfully written!");
+        .then(() => { 
+          console.log("project successfully created");
         })
         .catch((error) => {
-          console.error("Error writing document: ", error);
+          console.error("Error creating the project", error);
         });
       }
     })
-      console.log(true)
       
       navigate('/')
   };
@@ -78,12 +95,19 @@ const NewProject = () => {
     <div className={classes["form-container"]}>
       <form onSubmit={handleNewNoteSubmit}>
         
-        <input ref={titleRef} name="title" type="text" />
+        <input className={classes.nameinput} ref={titleRef} name="title" type="text" />
+
+        <div className={classes.metadata}>
+
+        <input ref={dateRef} className={classes.dateinput} type="date"  />
+
+        <input ref={priorityRef} className={classes.priorityinput} type="text" />
+        </div>
         
         <textarea
           ref={descriptionRef}
           onChange={handleChange}
-          className={classes["notebody"]}
+          className={classes["projectbody"]}
           name="note"
           placeholder="Start typing here"
           type="text"

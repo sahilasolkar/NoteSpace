@@ -76,7 +76,13 @@ padding-left: 100px;
   border-radius: 5px;
   height: 30px;
   border: none;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+
 
 .getIn{
   /* background-color: red; */

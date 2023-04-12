@@ -8,10 +8,11 @@ import { useAuth } from "../context/AuthContext";
 
 const ProjectFolder = (props) => {
   
+  // console.log(props.data)
   // console.log(props)
   // props.updateData()
   return (
-    <div className={classes.customshape}>
+    <div onClick={props.onClick} className={classes.customshape}>
       <div className={classes.customshapeinside}>
         <h4>{props.data.title}</h4>
         <p>{props.data.date}</p>

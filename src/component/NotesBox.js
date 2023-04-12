@@ -65,8 +65,6 @@ const NotesBox = (props) => {
       <div>
       <p className={classes["notes-date"]}>{props.date}</p>
 
-      {/* <Trash  className={classes.icons}/> */}
-
       <Delete onDeleteData={()=>onUpdate()} id={props.id} data={props.data}/>
 
       </div>

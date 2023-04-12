@@ -37,8 +37,6 @@ form input{
 
 .new-note-button{
   position: absolute;
-  /* top: 100px; */
-  /* background-color: red; */
   top: 90%;
   height: 2.5rem;
   width: 4rem;
@@ -58,8 +56,6 @@ form input{
   justify-content: center;
   cursor: pointer;
   position: absolute;
-  /* top: 100px; */
-  /* background-color: red; */
   top: 90%;
   height: 2.5rem;
   width: 4rem;
