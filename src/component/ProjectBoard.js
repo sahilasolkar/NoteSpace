@@ -110,14 +110,46 @@ const ProjectBoard = (props) => {
         <div className={classes["notes-box-container"]}>
           <div className={classes["task-container"]}>
             {projectData &&
-              Object.keys(projectData[props.projectId].task).map((key) => (
-                <div key={key} style={{ backgroundColor: getRandomColor() }}>
-                  <ProjectTask data={projectData[props.projectId].task[key]} />
+              Object.keys(projectData[props.projectId].task).map((key) => {
+                
+                if(!projectData[props.projectId].task[key].status){
+
+                  return <div key={key} style={{ backgroundColor: getRandomColor() }}>
+                    {console.log(projectData[props.projectId].task[key])}
+                    <ProjectTask rerender={getAllProjects} projectid={props.projectId} dataid={key} data={projectData[props.projectId].task[key]} />
+                  
                 </div>
-              ))}
+                }
+})}
           </div>
-          <div className={classes["task-container"]}></div>
-          <div className={classes["task-container"]}></div>
+          <div className={classes["task-container"]}>
+          {projectData &&
+              Object.keys(projectData[props.projectId].task).map((key) => {
+                
+                if(projectData[props.projectId].task[key].status==="inprogress"){
+
+                  return <div key={key} style={{ backgroundColor: getRandomColor() }}>
+                    {console.log(projectData[props.projectId].task[key])}
+                    <ProjectTask rerender={getAllProjects} projectid={props.projectId} dataid={key} data={projectData[props.projectId].task[key]} />
+                  
+                </div>
+                }
+})}
+          </div>
+          <div className={classes["task-container"]}>
+          {projectData &&
+              Object.keys(projectData[props.projectId].task).map((key) => {
+                
+                if(projectData[props.projectId].task[key].status==="completed"){
+
+                  return <div key={key} style={{ backgroundColor: getRandomColor() }}>
+                    {console.log(projectData[props.projectId].task[key])}
+                    <ProjectTask rerender={getAllProjects} projectid={props.projectId} dataid={key} data={projectData[props.projectId].task[key]} />
+                  
+                </div>
+                }
+})}
+          </div>
         </div>
       </div>
     </div>

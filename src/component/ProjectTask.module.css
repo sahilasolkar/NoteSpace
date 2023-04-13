@@ -1,4 +1,5 @@
 .tasks{
+  cursor: pointer;
   align-self: center;
   /* background-color: rgb(255, 206, 206); */
   height: 8rem;
@@ -9,6 +10,18 @@
   justify-content: space-between;
 }
 
+.icons{
+  padding-top: 2px;
+  width: 18px;
+  height: 18px;
+  color: #706f6f;
+}
+
+.iconholder{
+  display: flex;
+  gap: 1rem;
+}
+
 .taskdate{
   font-size: 12px;
   margin-left: 10px;
@@ -17,9 +30,13 @@
 }
 
 .tasks h5{
+  width: 90%;
   margin-top: 8px;
   margin-left: 10px;
   align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .projectnotebody p{
