@@ -46,7 +46,8 @@ const NewProjectTask = () => {
         if (doc.exists) {
           // console.log(doc.data()[id].task)
           setProjectTasks(doc.data()[id].task)
-          console.log(doc.data()[id].task)
+          // console.log(doc.data()[id].task)
+          console.log(id)
           const temp = doc.data()[id].task;
           temp[projectTaskId]=taskdata
           // console.log(temp)
