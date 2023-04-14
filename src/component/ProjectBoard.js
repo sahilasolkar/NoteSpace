@@ -67,13 +67,22 @@ const ProjectBoard = (props) => {
     return backgroundColors[randomIndex];
   }
 
+  const onDashboardHandler = () =>{
+    navigate(`/${currentUser.displayName}`)
+  }
+  const onProjectHandler = () =>{
+    
+  }
+
   // console.log('running in main area')
   return (
     <div className={classes["main-container"]}>
       {/* {projectData && console.log(projectData[props.projectId].task)} */}
       {projectData && (
         <div className={classes.heading}>
-          Project/{projectData[props.projectId].title}
+          <h4 className={classes.dashboard} onClick={onDashboardHandler}>Dashboard</h4>
+          <h4 onClick={onProjectHandler}>/Projects</h4>
+          <h4>/{projectData[props.projectId].title}</h4>
         </div>
       )}
       <div className={classes.projects}>
@@ -114,7 +123,7 @@ const ProjectBoard = (props) => {
                 
                 if(!projectData[props.projectId].task[key].status){
 
-                  return <div key={key} style={{ backgroundColor: getRandomColor() }}>
+                  return <div key={key} className={classes.changecolor} style={{ backgroundColor: getRandomColor() }}>
                     {console.log(projectData[props.projectId].task[key])}
                     <ProjectTask rerender={getAllProjects} projectid={props.projectId} dataid={key} data={projectData[props.projectId].task[key]} />
                   

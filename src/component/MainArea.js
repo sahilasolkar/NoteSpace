@@ -55,21 +55,23 @@ const MainArea = (props) => {
   const navigate = useNavigate();
 
   const onAddNoteHandler = () => {
-    navigate("/new-note");
+    navigate("/:id/new-note");
   };
 
   const onAddProjectHandler = () => {
-    navigate("/new-project");
+    navigate("/:id/new-project");
   };
 
   const onProjectFolderHandler = () => {
-    navigate(`/project`);
+    navigate(`/:id/project`);
   };
+
+  // console.log(currentUser)
 
   // console.log('running in main area')
   return (
     <div className={classes["main-container"]}>
-      <div className={classes.heading}>Welcome back, name!</div>
+      <div className={classes.heading}>Welcome back, {currentUser.displayName}</div>
       <div className={classes.projects}>
         <p className={classes["project-heading"]}>
           <Folder className={classes.icons} /> My Projects
@@ -79,7 +81,7 @@ const MainArea = (props) => {
         <div className={classes["folder-container"]}>
           {projectData &&
             Object.keys(projectData).map((doc) => (
-              <Link key={doc} style={{ textDecoration: "none" }} to={`/project/${doc}`}>
+              <Link key={doc} style={{ textDecoration: "none" }} to={`/:id/project/${doc}`}>
                 <ProjectFolder
                   updateData={() => onUpdateHandler()}
                   
@@ -107,9 +109,6 @@ const MainArea = (props) => {
                 id={doc}
               />
             ))}
-
-          {/* <NotesBox note='testnote' title='test title' date='randomdate'/>
-          <NotesBox note='testnote' title='test title' date='randomdate'/> */}
         </div>
       </div>
     </div>

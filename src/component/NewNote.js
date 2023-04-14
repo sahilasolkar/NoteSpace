@@ -71,7 +71,7 @@ const NewNote = () => {
     })
       console.log(true)
       
-      navigate('/')
+      navigate(-1)
   };
 
   return (
@@ -91,7 +91,7 @@ const NewNote = () => {
         <div
           className={classes["back-button"]}
           onClick={() => {
-            navigate("/");
+            navigate(-1);
           }}>
           Back
         </div>

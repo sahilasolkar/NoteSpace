@@ -43,7 +43,7 @@ const Rightbar = (props) => {
   const navigate = useNavigate();
 
   const onAddTaskHandler = () => {
-    navigate("/new-task");
+    navigate(`/${currentUser.displayName}/new-task`);
   };
 
   // console.log(taskData);

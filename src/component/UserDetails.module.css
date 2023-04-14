@@ -74,10 +74,27 @@
   justify-content: center;
 }
 
+.buttons{
+  display: flex;
+  gap: 10rem;
+}
+
+.linkstyle{
+  text-decoration: none;
+}
 
 .cancel{
-  color: rgba(255, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  margin-top: 2rem;
+  color: white;
+  border-radius: 10px;
+  height: 30px;
+  width: 80px;
   text-decoration: none;
+  background-color: rgb(254, 155, 155);
 }
 
 .form input{
@@ -111,6 +128,7 @@
   color: white;
   border-radius: 5px;
   height: 30px;
+  width: 80px;
   border: none;
 }
 

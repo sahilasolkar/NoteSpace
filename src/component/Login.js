@@ -13,7 +13,7 @@ const Login = (props) => {
 
   const navigate = useNavigate();
 
-  const { login } = useAuth();
+  const { login, username, currentUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -36,7 +36,8 @@ const Login = (props) => {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      navigate("/");
+
+      navigate(`/${currentUser.displayName}`);
       
     } catch {
       setError("failed to sign in");
