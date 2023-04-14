@@ -37,7 +37,7 @@ const UserDetails = () => {
     }
 
     Promise.all(promises).then(()=>{
-      navigate('/')
+      navigate(`/${currentUser.displayName}`)
     }).catch(()=>{
       setError("failed to update account")
     }).finally(()=>{
@@ -67,8 +67,13 @@ const UserDetails = () => {
           <input ref={confirmpasswordRef} type="password" placeholder="Leave blank to keep the same" name="confirm-password" />
           </div>
 
-          <button disabled={loading} type="submit">Update</button>        </form>
-          <div><span><Link className={classes.cancel} to='/'>Cancel</Link></span></div>
+<div className={classes.buttons}>
+
+          <button disabled={loading} type="submit">Update</button> 
+          <Link className={classes.linkstyle}  to={`/${currentUser.displayName}`} ><div className={classes.cancel}>Cancel</div></Link>
+</div>
+
+         </form>
         </div>
       </div>
     </div>

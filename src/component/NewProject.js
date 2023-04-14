@@ -84,7 +84,7 @@ const NewProject = () => {
       }
     })
       
-      navigate('/')
+      navigate(-1)
   };
 
   return (
@@ -111,7 +111,7 @@ const NewProject = () => {
         <div
           className={classes["back-button"]}
           onClick={() => {
-            navigate("/");
+            navigate(-1);
           }}>
           Back
         </div>

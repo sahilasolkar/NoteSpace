@@ -1,5 +1,10 @@
+
 .main-container{
   background-color: #f7f8fc;
+}
+
+.changecolor{
+  transition: color 1s ease;
 }
 
 .heading{
@@ -10,6 +15,7 @@
   color: #211a4c;
   /* padding: 40px 36px 8px 36px; */
   text-align: start;
+  display: flex;
 }
 
 .projects{
@@ -84,7 +90,7 @@
 }
 
 .notes{
-  height: 374px;
+  height: 380px;
   width: auto;
   /* background-color: ; */
   /* padding: 1rem; */
@@ -94,6 +100,10 @@
   gap: 1rem;
   width: 707.1px;
   overflow-x: scroll;
+}
+
+.dashboard{
+  cursor: pointer;
 }
 
 .notes p{

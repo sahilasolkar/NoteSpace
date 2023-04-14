@@ -21,7 +21,7 @@
 }
 
 .support{
-  padding-top: 50px;
+  padding-top: 1rem;
 }
 
 .icons{
@@ -106,26 +106,35 @@
 .project-list-items{
   margin-top: 1rem;
   margin-left: 1rem;
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
   display: flex;
+  height: 10rem;
   flex-direction: column;
   gap: 5px;
   align-items: center;
   justify-content: start;
+  overflow: scroll;
 }
 
-.project-list-items li{
+.project-list-items .linkele{
   width: 100%;
   cursor: pointer;
-  /* background-color: red; */
+  padding: 4px 5px;
+  width: 85%;
+  align-self: start;
+  border-radius: 5px;
+}
+
+/* .project-list-items li{
+  width: 100%;
+  cursor: pointer;
   text-align: start;
   padding: 4px 5px;
   width: 85%;
   border-radius: 5px;
-  /* list-style-type: none; */
-}
+} */
 
-.project-list-items li:hover{
+.project-list-items .linkele:hover{
   background-color: #f5eefb;
 }
 

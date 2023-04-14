@@ -28,14 +28,14 @@ function App() {
       <Router>
         <AuthProvider>
           <Routes>
-            <Route path="/" Component={PrivateRoute}>
-              <Route path="/" Component={Dashboard} />
-              <Route path="/user-details" Component={UserDetails} />
-              <Route path="/new-note" Component={NewNote} />
-              <Route path="/new-task" Component={NewTask} />
-              <Route path="/new-project" Component={NewProject} />
-              <Route path="/project/:id" Component={Projects} />
-              <Route path="/project/:id/new-project-task/:id" Component={NewProjectTask}/>
+            <Route path="/:id" Component={PrivateRoute}>
+              <Route path="/:id" Component={Dashboard} />
+              <Route path="/:id/user-details" Component={UserDetails} />
+              <Route path="/:id/new-note" Component={NewNote} />
+              <Route path="/:id/new-task" Component={NewTask} />
+              <Route path="/:id/new-project" Component={NewProject} />
+              <Route path="/:id/project/:id" Component={Projects} />
+              <Route path="/:id/project/:id/new-project-task/:id" Component={NewProjectTask}/>
             </Route>
             <Route path="/signup" Component={SignUp} />
             <Route path="/login" Component={Login} />

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import classes from "./Sidebar.module.css";
 import dummyImage from "../image/dp.jpg";
 import { ReactComponent as Check } from '../icons/checkmark-circle-outline.svg';
@@ -7,12 +7,14 @@ import { ReactComponent as Home } from '../icons/home-outline.svg';
 import { ReactComponent as Search } from '../icons/search-outline.svg';
 import {ReactComponent as Folder} from '../icons/folder-outline.svg';
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { db } from "../firebase";
 
 const Sidebar = (props) => {
   const {currentUser, logout} = useAuth()
   const [error, setError] = useState()
   const navigate = useNavigate()
+  const [projectData, setProjectData] = useState(null)
 
   // console.log(currentUser.email)
 
@@ -27,21 +29,44 @@ const Sidebar = (props) => {
   }
 
   const takeToProfile = () =>{
-    navigate('/user-details')
+    navigate(`/${currentUser.displayName}/user-details`)
   }
+
+  const getAllProjects = () => {
+    db.collection(currentUser.uid)
+      .doc("project")
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          // console.log(doc.data())
+          setProjectData(doc.data());
+        } else {
+          console.log("projects not found");
+        }
+      });
+  };
+
+  const newProjectClickHandler = () =>{
+    navigate(`/${currentUser.displayName}/new-project`)
+  }
+
+  useEffect(() => {
+
+    getAllProjects();
+  }, []);
 
   return (
     <div className={classes["side-bar-container"]}>
       <div className={classes["profile-with-image"]}>
         <img onClick={takeToProfile} src={dummyImage} alt="" />
         <div className={classes["profile-short"]}>
-          <h1>name</h1>
+          <h1>{currentUser.displayName}</h1>
           <p>{currentUser.email}</p>
         </div>
       </div>
 
       <div className={classes.projects}>
-        <button>+ New Project</button>
+        <button onClick={newProjectClickHandler}>+ New Project</button>
         <div className={classes['projects-functions']}>
           <p><Check className={classes.icons}/> Search</p>
           <p><Doc className={classes.icons}/> Home</p>
@@ -52,11 +77,13 @@ const Sidebar = (props) => {
 
       <div className={classes["project-list"]}>
         <p><Folder className={classes.icons}/>Projects</p>
+        
         <ul className={classes['project-list-items']}>
-          <li>project-1</li>
-          <li>project-2</li>
-          <li>project-3</li>
-          <li>project-4</li>
+        {projectData && Object.keys(projectData).map((doc)=>(
+          <Link className={classes.linkele} key={doc} style={{ textDecoration: "none" }} to={`/${currentUser.displayName}/project/${doc}`}>
+          <li>{projectData[doc].title}</li>
+          </Link>
+        ))}
         </ul>
       </div>
 

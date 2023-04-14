@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import {auth} from '../firebase'
+import { db } from "../firebase";
 
 const AuthContext = React.createContext();
 
@@ -8,16 +9,35 @@ export function useAuth(){
 }
 
 export function AuthProvider({children}){
+  
   const [currentUser, setCurrentUser] = useState()
   const [loading, setLoading] = useState(true)
+  const [username, setusername] = useState("")
+  const [useremail, setuseremail] = useState("")
 
   function signup(email, password){
     return auth.createUserWithEmailAndPassword(email, password)
   }
 
-  function setname(){
-   
+  function setname(name){
+   setusername(name)
   }
+
+  // function getname(){
+  //   return username
+  // }
+  const settingUserDetails = (username, useremail) =>{
+    setusername(username)
+    setuseremail(useremail)
+  }
+
+  // const settingUserData = (username, useremail) =>{
+  //   console.log('this ran')
+  //     db.collection(currentUser.uid).doc("userData").set({
+  //       name: username,
+  //       email: useremail,
+  //     });
+  // }
 
   function login(email, password){
     return auth.signInWithEmailAndPassword(email, password)
@@ -29,6 +49,20 @@ export function AuthProvider({children}){
 
   function resetPassword(email){
     return auth.sendPasswordResetEmail(email)
+  }
+
+  function getCurrentUser(){
+    return currentUser
+  }
+
+  function setdisplayname(name){
+    auth.currentUser.updateProfile({
+      displayName: name
+    }).then(() => {
+      console.log("display name successfully added")
+    }).catch((error) => {
+      console.error("error adding the display name", error)
+    });
   }
 
   function updateEmail(email){
@@ -43,12 +77,18 @@ export function AuthProvider({children}){
     const unsubscribe = auth.onAuthStateChanged(user=>{
       setCurrentUser(user)
       setLoading(false)
+      // settingUserData(username, useremail)
     })
 
     return unsubscribe
   }, [])
 
   const value ={
+    setdisplayname,
+    settingUserDetails,
+    getCurrentUser,
+    setname,
+    username,
     currentUser,
     signup,
     login,

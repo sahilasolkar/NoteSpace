@@ -5,19 +5,17 @@ import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { db } from "../firebase";
 
-
 const SignUp = (props) => {
-
   const emailRef = useRef();
   const nameRef = useRef();
   const passwordRef = useRef();
   const confirmpasswordRef = useRef();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const { signup } = useAuth();
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
+  const { signup, setdisplayname } = useAuth();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,35 +28,28 @@ const SignUp = (props) => {
     setRegister(!register);
   };
 
-  const {currentUser} = useAuth()
-
   const formSubmitHandler = async (event) => {
     event.preventDefault();
+
+    if (passwordRef.current.value !== confirmpasswordRef.current.value) {
+      return setError("Passwords do not match");
+    }
+
+    try {
+      setError("");
+      setLoading(true);
+      await signup(emailRef.current.value, passwordRef.current.value)
+      await setdisplayname(nameRef.current.value)
+    } catch {
+      setError("failed to create an account");
+    }
     
-    if(passwordRef.current.value!==confirmpasswordRef.current.value){
-      return setError('Passwords do not match')
-    }
-
-    try{
-      setError("")
-      setLoading(true)
-      await signup(emailRef.current.value, passwordRef.current.value);
-    }catch{
-      setError("failed to create an account")
-    }
-
-    db.collection(currentUser.uid).doc("userData").set({
-      name: nameRef.current.value,
-      email: emailRef.current.value,
-    });
-
-    setLoading(false)
-
-    navigate('/')
+    navigate(`/${nameRef.current.value}`);
 
     setEmail("");
     setName("");
     setPassword("");
+    // setname(nameRef.current.value);
   };
 
   const handleNameChange = (event) => {
@@ -77,10 +68,11 @@ const SignUp = (props) => {
   return (
     <div className={classes["main-container"]}>
       <div className={classes["form-container"]}>
-        
-          <div className={classes.getIn} >
-            <span><Link to='/login'>Login</Link></span>
-          </div>
+        <div className={classes.getIn}>
+          <span>
+            <Link to="/login">Login</Link>
+          </span>
+        </div>
 
         <h2>Registration..</h2>
         <p>Please enter your details</p>
@@ -95,16 +87,16 @@ const SignUp = (props) => {
             name="fname"
             onChange={handleNameChange}
           />
-          
-              <label htmlFor="email">email</label>
-              <input
-                ref={emailRef}
-                value={email}
-                type="email"
-                name="email"
-                onChange={handleEmailChange}
-              />
-            
+
+          <label htmlFor="email">email</label>
+          <input
+            ref={emailRef}
+            value={email}
+            type="email"
+            name="email"
+            onChange={handleEmailChange}
+          />
+
           <label htmlFor="password">password</label>
           <input
             ref={passwordRef}
@@ -113,7 +105,7 @@ const SignUp = (props) => {
             name="password"
             onChange={handlePasswordChange}
           />
-          
+
           <label htmlFor="confirmpassword"> confirm password</label>
           <input
             ref={confirmpasswordRef}
@@ -121,10 +113,11 @@ const SignUp = (props) => {
             type="password"
             name="confirmpassword"
             onChange={handleConfirmPasswordChange}
-            />
-           
-          <button disabled={loading} type="submit">Register</button>
+          />
 
+          <button disabled={loading} type="submit">
+            Register
+          </button>
         </form>
       </div>
       <div className={classes["image-container"]}>

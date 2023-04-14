@@ -55,7 +55,7 @@ const NewTask = () => {
       }
     })
 
-    navigate('/')
+    navigate(`/${currentUser.displayName}`)
   };
 
   return (
@@ -75,7 +75,7 @@ const NewTask = () => {
         <div
           className={classes["back-button"]}
           onClick={() => {
-            navigate("/");
+            navigate(`/${currentUser.displayName  }`);
           }}>
           Back
         </div>
