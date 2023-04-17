@@ -8,7 +8,6 @@ import Login from "./component/Login";
 import UserDetails from "./component/UserDetails";
 import PrivateRoute from "./component/PrivateRoute";
 import ForgotPassword from "./component/ForgotPassword";
-import { useAuth } from "./context/AuthContext";
 import NewNote from "./component/NewNote";
 import NewTask from "./component/NewTask";
 import NewProject from "./component/NewProject";
@@ -18,17 +17,13 @@ import NewProjectTask from "./component/NewProjectTask";
 //dribble-design-link-for-reference-https://dribbble.com/shots/19721906-Note-taking-app-dashboard-design/attachments/14834313?mode=media
 
 function App() {
-  // const {currentUser} = useAuth()
-  // console.log(currentUser.email)
-
-  // console.log('running in app')
 
   return (
     <div className="App">
       <Router>
         <AuthProvider>
           <Routes>
-            <Route path="/:id" Component={PrivateRoute}>
+            <Route path="/" Component={PrivateRoute}>
               <Route path="/:id" Component={Dashboard} />
               <Route path="/:id/user-details" Component={UserDetails} />
               <Route path="/:id/new-note" Component={NewNote} />

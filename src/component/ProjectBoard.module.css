@@ -3,16 +3,16 @@
   background-color: #f7f8fc;
 }
 
-.changecolor{
+/* .changecolor{
   transition: color 1s ease;
-}
+} */
 
 .heading{
   margin-top: 31px;
   font-weight: 500;
   padding-left: 34px;
   font-size: 24px;
-  color: #211a4c;
+  color: #af84d0;
   /* padding: 40px 36px 8px 36px; */
   text-align: start;
   display: flex;
