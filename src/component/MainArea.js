@@ -13,9 +13,29 @@ const MainArea = (props) => {
   const { currentUser } = useAuth();
   const [noteData, setNoteData] = useState(null);
   const [projectData, setProjectData] = useState(null);
+  const [greet, setGreet] = useState(0)
 
   const onUpdateHandler = () => {
     getAllNotes();
+  };
+
+  const determineDay = () => {
+    const now = new Date();
+    const currentHour = now.getHours();
+
+    if (currentHour >= 5 && currentHour < 12) {
+      // console.log("Good morning!");
+      return 1
+    } else if (currentHour >= 12 && currentHour < 18) {
+      // console.log("Good afternoon!");
+      return 2
+    } else if (currentHour >= 18 && currentHour < 22) {
+      // console.log("Good evening!");
+      return 3
+    } else {
+      // console.log("Good night!");
+      return 4
+    }
   };
 
   const getAllNotes = () => {
@@ -50,20 +70,21 @@ const MainArea = (props) => {
   useEffect(() => {
     getAllNotes();
     getAllProjects();
+    setGreet(determineDay()); 
   }, []);
 
   const navigate = useNavigate();
 
   const onAddNoteHandler = () => {
-    navigate("/:id/new-note");
+    navigate(`/${currentUser.displayName}/new-note`);
   };
 
   const onAddProjectHandler = () => {
-    navigate("/:id/new-project");
+    navigate(`/${currentUser.displayName}/new-project`);
   };
 
   const onProjectFolderHandler = () => {
-    navigate(`/:id/project`);
+    navigate(`/${currentUser.displayName}/project`);
   };
 
   // console.log(currentUser)
@@ -71,7 +92,9 @@ const MainArea = (props) => {
   // console.log('running in main area')
   return (
     <div className={classes["main-container"]}>
-      <div className={classes.heading}>Welcome back, {currentUser.displayName}</div>
+      <div className={classes.heading}>
+      {greet==1? "Good Morning, " : greet==2? "Good Afternoon, " : greet==3? "Good Evening, ": "Good Evening, "}{currentUser.displayName}
+      </div>
       <div className={classes.projects}>
         <p className={classes["project-heading"]}>
           <Folder className={classes.icons} /> My Projects
@@ -81,10 +104,12 @@ const MainArea = (props) => {
         <div className={classes["folder-container"]}>
           {projectData &&
             Object.keys(projectData).map((doc) => (
-              <Link key={doc} style={{ textDecoration: "none" }} to={`/:id/project/${doc}`}>
+              <Link
+                key={doc}
+                style={{ textDecoration: "none" }}
+                to={`/:id/project/${doc}`}>
                 <ProjectFolder
                   updateData={() => onUpdateHandler()}
-                  
                   data={projectData[doc]}
                 />
               </Link>

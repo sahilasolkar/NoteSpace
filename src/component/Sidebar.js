@@ -50,6 +50,10 @@ const Sidebar = (props) => {
     navigate(`/${currentUser.displayName}/new-project`)
   }
 
+  const onHomeHandler = () =>{
+    navigate(`/${currentUser.displayName}`)
+  }
+
   useEffect(() => {
 
     getAllProjects();
@@ -69,7 +73,7 @@ const Sidebar = (props) => {
         <button onClick={newProjectClickHandler}>+ New Project</button>
         <div className={classes['projects-functions']}>
           <p><Check className={classes.icons}/> Search</p>
-          <p><Doc className={classes.icons}/> Home</p>
+          <p onClick={onHomeHandler}><Doc className={classes.icons}/> Home</p>
           <p><Home className={classes.icons}/> Notes</p>
           <p><Search className={classes.icons}/> Tasks</p>
         </div>
