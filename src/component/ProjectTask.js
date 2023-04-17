@@ -59,7 +59,9 @@ const ProjectTask = (props) => {
         db.collection(currentUser.uid).doc('project').update({
           [props.projectid]:{
             ...doc.data()[props.projectid],
-            task: temp
+            task: temp,
+            inProgress: doc.data()[props.projectid].inProgress-1,
+            completed: doc.data()[props.projectid].completed+1
           }
         }).then(()=>{
           // console.log(props.data.status)
@@ -89,7 +91,9 @@ const ProjectTask = (props) => {
         db.collection(currentUser.uid).doc('project').update({
           [props.projectid]:{
             ...doc.data()[props.projectid],
-            task: temp
+            task: temp,
+            toDo: doc.data()[props.projectid].toDo-1,
+            inProgress: doc.data()[props.projectid].inProgress+1
           }
         }).then(()=>{
           // console.log(props.data.status)

@@ -47,8 +47,7 @@ const SquareOutlineIcon = (props) => {
             console.log("couldnt delete the task");
           }
         });
-    } else {
-    }
+    } 
   };
 
   return (

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import {auth} from '../firebase'
 import { db } from "../firebase";
+import toast from "react-hot-toast";
 
 const AuthContext = React.createContext();
 
@@ -55,6 +56,36 @@ export function AuthProvider({children}){
     return currentUser
   }
 
+  function setNotification(message, stat, emo){
+    //notification 
+    
+    const notify = () => toast(message, {
+      duration: 4000,
+      position: 'top-center',
+    
+      // Styling
+      style: {backgroundColor: `${stat? "#fff": "#FF8787"}`},
+      className: '',
+    
+      // Custom Icon
+      icon: emo,
+    
+      // Change colors of success/error/loading icon
+      iconTheme: {
+        primary: '#000',
+        secondary: '#fff',
+      },
+    
+      // Aria
+      ariaProps: {
+        role: 'status',
+        'aria-live': 'polite',
+      },
+    });
+
+    notify()
+  }
+
   function setdisplayname(name){
     auth.currentUser.updateProfile({
       displayName: name
@@ -84,6 +115,7 @@ export function AuthProvider({children}){
   }, [])
 
   const value ={
+    setNotification,
     setdisplayname,
     settingUserDetails,
     getCurrentUser,

@@ -4,6 +4,7 @@ import { db } from "../firebase";
 import { useAuth } from "../context/AuthContext";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const NewProject = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const NewProject = () => {
   const dateRef = useRef();
   const priorityRef = useRef();
 
-  const { currentUser } = useAuth();
+  const { currentUser, setNotification } = useAuth();
 
   //to handle the textarea sizing 
   const handleChange = (event) => {
@@ -25,15 +26,6 @@ const NewProject = () => {
   const handleNewNoteSubmit = async(event) => {
     event.preventDefault();
     const projectid = uuidv4();
-    // db.collection(currentUser.uid)
-    //   .doc(`notes`)
-    //   .set({
-    //     [noteid]: {
-    //       title: titleRef.current.value,
-    //       note: descriptionRef.current.value,
-    //       date: new Date().toLocaleDateString(),
-    //     },
-    //   });
 
     await db.collection(currentUser.uid).doc("project").get().then((doc)=>{
       if(doc.exists){
@@ -76,7 +68,7 @@ const NewProject = () => {
           },
         })
         .then(() => { 
-          console.log("project successfully created");
+          console.log("project successfully created 1st time");
         })
         .catch((error) => {
           console.error("Error creating the project", error);
@@ -85,27 +77,48 @@ const NewProject = () => {
     })
       
       navigate(-1)
+
+    //notification 
+    setNotification("Added New Project", true, "👏")
+    
   };
 
   return (
     <div className={classes["form-container"]}>
       <form onSubmit={handleNewNoteSubmit}>
         
-        <input className={classes.nameinput} ref={titleRef} name="title" type="text" />
+        <input required className={classes.nameinput} ref={titleRef} name="title" type="text" placeholder="Title..."/>
 
-        <div className={classes.metadata}>
+        {/* <div className={classes.metadata}>
 
         <input ref={dateRef} className={classes.dateinput} type="date"  />
 
-        <input ref={priorityRef} className={classes.priorityinput} type="text" />
-        </div>
+        <input ref={priorityRef} className={classes.priorityinput} placeholder="Priority.." type="text" />
+
+        </div> */}
+
+<div className={classes.metadata}>
+        <input required ref={dateRef} className={classes.dateinput} type="date" />
+        <select required ref={priorityRef} className={classes.priorityinput} placeholder="Priority.." type="text">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+
+
+        {/* <select ref={priorityRef} className={classes.priorityinput} placeholder="Priority.." type="text" />
+        <option value="low">low</option>
+  <option value="medium">medium</option>
+  <option value="high">high</option>
+        </select> */}
         
         <textarea
           ref={descriptionRef}
           onChange={handleChange}
           className={classes["projectbody"]}
           name="note"
-          placeholder="Start typing here"
+          placeholder="Describe your project"
           type="text"
         />
         <div
@@ -118,6 +131,7 @@ const NewProject = () => {
         <button type="submit" className={classes["new-note-button"]}>
           Done
         </button>
+        
       </form>
     </div>
   );
