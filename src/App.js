@@ -13,6 +13,8 @@ import NewTask from "./component/NewTask";
 import NewProject from "./component/NewProject";
 import Projects from "./component/Projects";
 import NewProjectTask from "./component/NewProjectTask";
+import 'react-notifications-component/dist/theme.css'
+import { Toaster } from 'react-hot-toast';
 
 //dribble-design-link-for-reference-https://dribbble.com/shots/19721906-Note-taking-app-dashboard-design/attachments/14834313?mode=media
 
@@ -20,6 +22,7 @@ function App() {
 
   return (
     <div className="App">
+      <Toaster />
       <Router>
         <AuthProvider>
           <Routes>

@@ -8,6 +8,13 @@
   clip-path: polygon(0 0, 35% 0, 40% 8%, 100% 8%, 100% 100%, 0 100%);
 }
 
+.icons{
+  padding-top: 2px;
+  width: 18px;
+  height: 18px;
+  color: #706f6f;
+}
+
 .customshapeinside{
   /* font-size: 10px; */
   margin: 4px;
@@ -30,4 +37,9 @@
   color: #2f2569;
   /* margin-top: 24px; */
   /* padding-left: 14px; */
+}
+
+.projectheading{
+  display: flex;
+  justify-content: space-between;
 }

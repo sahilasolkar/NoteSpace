@@ -4,6 +4,7 @@ import { db } from "../firebase";
 import { useAuth } from "../context/AuthContext";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const NewNote = () => {
   const navigate = useNavigate();
@@ -63,15 +64,40 @@ const NewNote = () => {
         })
         .then(() => {
           console.log("Document successfully written!");
+          
         })
         .catch((error) => {
           console.error("Error writing document: ", error);
         });
       }
     })
-      console.log(true)
-      
       navigate(-1)
+      //notification of done
+      const notify = () => toast('New Task Added!', {
+        duration: 4000,
+        position: 'top-center',
+      
+        // Styling
+        style: {},
+        className: '',
+      
+        // Custom Icon
+        icon: '👏',
+      
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: '#000',
+          secondary: '#fff',
+        },
+      
+        // Aria
+        ariaProps: {
+          role: 'status',
+          'aria-live': 'polite',
+        },
+      });
+  
+      notify()
   };
 
   return (

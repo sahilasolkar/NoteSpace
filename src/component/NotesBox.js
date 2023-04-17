@@ -5,6 +5,7 @@ import { ReactComponent as Trash } from "../icons/trash-outline.svg";
 import { useAuth } from "../context/AuthContext";
 import firebase from "firebase/compat/app";
 import { db } from "../firebase";
+import toast from "react-hot-toast";
 
 const NotesBox = (props) => {
 
@@ -12,26 +13,6 @@ const NotesBox = (props) => {
 
   // console.log(props.data)
   // console.log(props.id)
-  
-  const onDeleteHandler = () =>{
-    db.collection(currentUser.uid).doc('task').get().then((doc)=>{
-      if(doc.exists){
-
-        // console.log(notes.id)
-
-        db.collection(currentUser.uid).doc('task').update({
-          ['f50a225b-3218-46d5-9677-0fe14a951f50']:firebase.firestore.FieldValue.delete()
-          
-        }).then(()=>{
-          console.log("note sucessfully deleted")
-
-          props.onDeleteData()
-        }).catch((error)=>{
-          console.error("error deleting the task", error)
-        })
-      }
-    })
-  }
 
   const onUpdate = () =>{
     props.updateData()

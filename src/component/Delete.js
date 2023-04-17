@@ -3,10 +3,13 @@ import classes from './Delete.module.css'
 import { db } from '../firebase'
 import { useAuth } from '../context/AuthContext'
 import firebase from 'firebase/compat/app'
+import toast from 'react-hot-toast'
+
 const Delete = (props) => {
 
   const [notes, setNotes] = useState(props)
-  const {currentUser} = useAuth()
+  const {currentUser, setNotification} = useAuth()
+  
 
   const onDeleteHandler = () =>{
     const results = window.confirm('are you sure?')
@@ -23,6 +26,10 @@ const Delete = (props) => {
           console.log("note sucessfully deleted")
 
           props.onDeleteData()
+
+          //notification of done
+        setNotification("Note Deleted", false, "❌")
+
         }).catch((error)=>{
           console.error("error deleting the task", error)
         })

@@ -57,7 +57,8 @@ const NewProjectTask = () => {
             .update({
               [`${id}`]: {
                 ...doc.data()[id],
-                task: temp
+                task: temp,
+                toDo: doc.data()[id].toDo+1
               }
             })
             .then(() => {

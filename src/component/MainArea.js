@@ -109,6 +109,8 @@ const MainArea = (props) => {
                 style={{ textDecoration: "none" }}
                 to={`/:id/project/${doc}`}>
                 <ProjectFolder
+                  rerender={getAllProjects}
+                  id={doc}
                   updateData={() => onUpdateHandler()}
                   data={projectData[doc]}
                 />
